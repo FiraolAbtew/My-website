@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Editable Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .editable:hover {
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-blue-600 text-white py-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold editable" contenteditable="true">Welcome to My Website</h1>
+            <p class="mt-2 text-lg editable" contenteditable="true">A place to showcase your ideas</p>
+        </div>
+    </header>
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-semibold text-center mb-6 editable" contenteditable="true">About Us</h2>
+            <p class="text-lg text-gray-700 text-center max-w-2xl mx-auto editable" contenteditable="true">
+                Click to edit this text and customize your site!
+            </p>
+        </div>
+    </section>
+    <footer class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p class="editable" contenteditable="true">© 2025 My Website. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.editable').forEach(element => {
+            element.addEventListener('blur', () => {
+                localStorage.setItem(element.innerText, element.innerHTML);
+            });
+            const savedContent = localStorage.getItem(element.innerText);
+            if (savedContent) {
+                element.innerHTML = savedContent;
+            }
+        });
+    </script>
+</body>
+</html>
